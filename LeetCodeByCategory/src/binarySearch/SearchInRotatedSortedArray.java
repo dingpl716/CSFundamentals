@@ -11,31 +11,31 @@ package binarySearch;
 public class SearchInRotatedSortedArray {
 
     public int search(int[] A, int target) {
-        if(A == null || A.length == 0)
+        if (A == null || A.length == 0)
             return -1;
-            
+
         int left = 0;
         int right = A.length - 1;
-        
-        while(left <= right) {
-            int middle = (left + right)/2;
-            if(A[middle] == target)
+
+        while (left <= right) {
+            int middle = (left + right) / 2;
+            if (A[middle] == target)
                 return middle;
-            
+
             // the left part is sorted
-            if(A[left]<=A[middle]) { 
-                if(A[left]<=target && target < A[middle])
+            if (A[left] <= A[middle]) {
+                if (A[left] <= target && target < A[middle])
                     right = middle - 1; // if the target is in the sorted part, we can discard half of the array
                 else
-                    left = middle + 1; 
-            }else { // the right part is sorted
-                if(A[middle] < target && target <= A[right])
+                    left = middle + 1;
+            } else { // the right part is sorted
+                if (A[middle] < target && target <= A[right])
                     left = middle + 1;
                 else
                     right = middle - 1;
             }
         }
-        
+
         return -1;
     }
 }

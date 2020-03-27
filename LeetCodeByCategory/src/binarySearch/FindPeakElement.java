@@ -9,35 +9,48 @@ package binarySearch;
 //	You may imagine that num[-1] = num[n] = -∞.
 //	
 //	For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.
-		
+
 public class FindPeakElement {
-	
-	public int findPeakElement(int[] nums) {
-        if (nums == null || nums.length == 0) {
-        	return 0;
-        }
-        
-        if (nums.length == 1){
-        	return 0;
-        }
-        
-        int left = 0;
-        int right = nums.length - 1;
-        while(left < right){
-        	int mid1 = (left + right) / 2;
-        	int mid2 = mid1 + 1;
-        	
-        	// 此时mid2为可能的峰值，所以舍弃mid1的那一部分
-        	if (nums[mid1] < nums[mid2]) {
-        		left = mid2;
-        	}
-        	
-        	// 此时mid1为可能的峰值，所以舍弃mid2的那一部分 
-        	else {
-        		right = mid1;
-        	}
-        }
-        
-        return left;
-    }
+
+	public static int findPeakElement(int[] nums) {
+		if (nums == null || nums.length == 0) {
+			return 0;
+		}
+
+		if (nums.length == 1) {
+			return 0;
+		}
+
+		int left = 0;
+		int right = nums.length - 1;
+		while (left < right) {
+			int mid1 = (left + right) / 2;
+			int mid2 = mid1 + 1;
+
+			// 此时mid2为可能的峰值，所以舍弃mid1的那一部分
+			if (nums[mid1] < nums[mid2]) {
+				left = mid2;
+			}
+
+			// 此时mid1为可能的峰值，所以舍弃mid2的那一部分
+			else {
+				right = mid1;
+			}
+		}
+
+		return left;
+	}
+
+	public static void main(String[] args) {
+		int[] nums;
+		int index;
+
+		nums = new int[] { 0, 1, 2, 3, 4 };
+		index = FindPeakElement.findPeakElement(nums);
+		System.out.println(nums[index]);
+
+		nums = new int[] { 1, 2, 3, 1 };
+		index = FindPeakElement.findPeakElement(nums);
+		System.out.println(nums[index]);
+	}
 }

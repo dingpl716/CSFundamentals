@@ -11,9 +11,7 @@ package binarySearch;
 //	There is only one duplicate number in the array, but it could be repeated more than once.
 
 /**
- * 核心思想： 二分查找
- * 对于一个数组，假设其值是从1到k的话，
- * 小于等于m的数一定 <= m 个，
+ * 核心思想： 二分查找 对于一个数组，假设其值是从1到k的话， 小于等于m的数一定 <= m 个，
  * 所以根据这个条件来判断现在的middle到底是在duplicate的左边还是右边
  * 
  * @author peding
@@ -22,48 +20,47 @@ package binarySearch;
 public class FindTheDuplicateNumber {
 
     public int findDuplicate(int[] nums) {
-        if (nums == null || nums.length == 0){
-        	return 0;
+        if (nums == null || nums.length == 0) {
+            return 0;
         }
-        
-        if (nums.length == 1 || nums.length == 2){
-        	return nums[0];
+
+        if (nums.length == 1 || nums.length == 2) {
+            return nums[0];
         }
-        
+
         int left = 1;
         int right = nums.length - 1; // The max value of the array.
-        
-        
-        while (left < right){
-        	int middle = (left + right) / 2;
-        	int counts = countNumberNoLargerThanM(nums, middle);
-        	if (counts > middle) {
-        		right = middle;
-        	}
-        	else {
-        		left = middle + 1;
-        	}
-        	
+
+        while (left < right) {
+            int middle = (left + right) / 2;
+            int counts = countNumberNoLargerThanM(nums, middle);
+            if (counts > middle) {
+                right = middle;
+            } else {
+                left = middle + 1;
+            }
+
         }
-        
+
         return left;
     }
-    
+
     /**
-     * Counts the numbers in the array, which are either smaller than or larger than middle.
+     * Counts the numbers in the array, which are either smaller than or larger than
+     * middle.
+     * 
      * @param nums
      * @param middle
-     * @return 
+     * @return
      */
-    private int countNumberNoLargerThanM(int[] nums, int middle){
-    	int result = 0;
-    	
-    	for (int number : nums) {
-    		if (number <= middle) {
-    			++result;
-    		}
-    	}
-    	
-    	return result;
+    private int countNumberNoLargerThanM(int[] nums, int middle) {
+        int result = 0;
+
+        for (int number : nums) {
+            if (number <= middle)
+                ++result;
+        }
+
+        return result;
     }
 }
